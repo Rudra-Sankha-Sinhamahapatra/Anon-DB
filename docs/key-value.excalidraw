@@ -1,0 +1,48 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor",
+  "elements": [
+    {
+      "id": "h8kFPuAtUbeAGfU3qnz8X",
+      "type": "text",
+      "x": 34.6796875,
+      "y": 117.953125,
+      "width": 277.7799072265625,
+      "height": 50,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 1195641619,
+      "version": 54,
+      "versionNonce": 380760957,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1739182124082,
+      "link": null,
+      "locked": false,
+      "text": "Golang ->  key : value\n            name : sandeep ",
+      "fontSize": 20,
+      "fontFamily": 1,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "baseline": 43,
+      "containerId": null,
+      "originalText": "Golang ->  key : value\n            name : sandeep ",
+      "lineHeight": 1.25
+    }
+  ],
+  "appState": {
+    "gridSize": null,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}
