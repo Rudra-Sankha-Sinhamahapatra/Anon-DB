@@ -1,0 +1,38 @@
+package store
+
+import "errors"
+
+func NewInMemoryStore() *InMemoryStore {
+	return &InMemoryStore{
+		data: make(map[string][]byte),
+	}
+}
+
+var Error = errors.New("key not found")
+
+func (s *InMemoryStore) Set(key string, value []byte) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	s.data[key] = value
+}
+
+func (s *InMemoryStore) Get(key string) ([]byte, error) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	value, ok := s.data[key]
+
+	if !ok {
+		return nil, Error
+	}
+
+	return value, nil
+}
+
+func (s *InMemoryStore) Delete(key string) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	delete(s.data, key)
+}
