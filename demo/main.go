@@ -27,4 +27,13 @@ func main() {
 	}
 
 	store.Delete("foo")
+
+	value3, err := store.Get("foo")
+
+	if err != nil {
+		fmt.Println("Error:", err)
+	} else {
+		fmt.Println("Value 2:", string(value3))
+	}
+
 }
