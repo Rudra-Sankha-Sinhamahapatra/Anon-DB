@@ -1,7 +1,11 @@
 package main
 
 import "C"
-import "github.com/Rudra-Sankha-Sinhamahapatra/Anon-DB/store"
+import (
+	"fmt"
+
+	"github.com/Rudra-Sankha-Sinhamahapatra/Anon-DB/store"
+)
 
 var db = store.NewInMemoryStore()
 
@@ -25,4 +29,16 @@ func Delete(key *C.char) {
 	db.Delete(k)
 }
 
-func main() {}
+func main() {
+	db := store.NewInMemoryStore()
+	db.Set("name", []byte("Rudra"))
+
+	val, err := db.Get("name")
+	if err != nil {
+		fmt.Println("Error:", err)
+	} else {
+		fmt.Println("Value:", string(val))
+	}
+
+	db.Delete("name")
+}

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestInMemStore(t *testing.T) {
+func TestInMemoryStore(t *testing.T) {
 	store := NewInMemoryStore()
 
 	t.Run("get key after put returns value", func(t *testing.T) {
@@ -24,7 +24,7 @@ func TestInMemStore(t *testing.T) {
 	t.Run("get key that doesn't exist returns error", func(t *testing.T) {
 		_, err := store.Get("test1")
 
-		if err != Error {
+		if err != ErrKeyNotFound {
 			t.Errorf("Expected ErrKeyNotFound, got %v", err)
 		}
 	})
@@ -34,13 +34,13 @@ func TestInMemStore(t *testing.T) {
 		store.Delete("test2")
 		_, err := store.Get("test2")
 
-		if err != Error {
+		if err != ErrKeyNotFound {
 			t.Errorf("Expected ErrKeyNotFound, got %v", err)
 		}
 	})
 }
 
-func TestInMemStoreConcurrent(b *testing.B) {
+func BenchmarkInMemoryStore(b *testing.B) {
 	b.Run("set", func(b *testing.B) {
 		store := NewInMemoryStore()
 
@@ -55,11 +55,21 @@ func TestInMemStoreConcurrent(b *testing.B) {
 		for i := 0; i < b.N; i++ {
 			store.Set(fmt.Sprintf("hello%q", i), []byte("bar"))
 		}
+
+		b.ResetTimer()
+		for i := 0; i < b.N; i++ {
+			store.Get(fmt.Sprintf("hello%q", i))
+		}
 	})
 
 	b.Run("delete", func(b *testing.B) {
 		store := NewInMemoryStore()
 
+		for i := 0; i < b.N; i++ {
+			store.Set(fmt.Sprintf("hello%q", i), []byte("bar"))
+		}
+
+		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
 			store.Delete(fmt.Sprintf("hello%q", i))
 		}

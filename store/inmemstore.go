@@ -8,7 +8,7 @@ func NewInMemoryStore() *InMemoryStore {
 	}
 }
 
-var Error = errors.New("key not found")
+var ErrKeyNotFound = errors.New("key not found")
 
 func (s *InMemoryStore) Set(key string, value []byte) {
 	s.mu.Lock()
@@ -24,7 +24,7 @@ func (s *InMemoryStore) Get(key string) ([]byte, error) {
 	value, ok := s.data[key]
 
 	if !ok {
-		return nil, Error
+		return nil, ErrKeyNotFound
 	}
 
 	return value, nil
